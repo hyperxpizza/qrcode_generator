@@ -1,0 +1,4 @@
+bottle==0.12.17
+Pillow==6.2.0
+qrcode==6.1
+six==1.12.0
