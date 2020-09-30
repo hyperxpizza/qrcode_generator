@@ -2,7 +2,7 @@ FROM python:3.6.9
 
 WORKDIR /app
 COPY . /app
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip3 install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 8080
 
