@@ -1,5 +1,8 @@
 # QR code generator
-This is a simple bottle backend to generate qr-codes with a lame frontend
+This is a simple bottle app to generate qr codes
+
+## Can I see it anywhere?
+https://qrcode.kernel-panic.pl
 
 ## How to run?
 ```bash

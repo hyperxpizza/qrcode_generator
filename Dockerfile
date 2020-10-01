@@ -1,9 +1,11 @@
 FROM python:3.6.9
 
-WORKDIR /app
-COPY . /app
-RUN pip3 install --trusted-host pypi.python.org -r requirements.txt
+WORKDIR /app 
+COPY . .
+RUN pip install -r requirements.txt
+
+RUN ls -la .
 
 EXPOSE 8080
 
-CMD ["python3", "app.py"]
+CMD ["python", "./app.py"]
