@@ -26,7 +26,7 @@ def create_qr(data):
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
         filename = filename + ".png"
-        img.save(DIR_PATH + '/media/qrcodes/' + filename)
+        img.save(DIR_PATH + '/static/qrcodes/' + filename)
         
     else:   
         if data['method'] == "basic":
@@ -38,10 +38,10 @@ def create_qr(data):
 
         filename = filename + ".svg"
         img = qrcode.make(data['data'], image_factory=factory)
-        img.save(DIR_PATH + '/media/qrcodes/' + filename)
+        img.save(DIR_PATH + '/static/qrcodes/' + filename)
 
-    filepath = DIR_PATH + '/media/qrcodes/' + filename
-    return('/media/qrcodes/' + filename)
+    filepath = DIR_PATH + '/static/qrcodes/' + filename
+    return('/static/qrcodes/' + filename)
     
 
 @app.route('/')
@@ -64,8 +64,8 @@ def do_qr():
     }
 
     qr = create_qr(data)
+    print(qr)
     return static_file(qr, root=DIR_PATH)
-
 
 #static files
 @app.route('/static/<filepath:path>')
@@ -73,4 +73,4 @@ def server_static(filepath):
     return static_file(filepath, root=STATIC_PATH)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8888, debug=False)
