@@ -1,3 +1,2 @@
-/venv
-/media
-/static
+venv/
+static/

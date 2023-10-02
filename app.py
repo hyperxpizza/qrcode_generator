@@ -1,4 +1,4 @@
-from bottle import Bottle, run, route, post, template, redirect, request, static_file
+from bottle import Bottle, run, route, post, template, redirect, request, static_file, abort
 
 app = Bottle()
 
@@ -45,13 +45,18 @@ def create_qr(data):
     
 
 @app.route('/')
-@app.route('/index')
 def index():
-    redirect('/qr')
+    return template('index.tpl')
+
 
 @app.get('/qr')
 def qr():
-    return template('index.tpl')
+    # find qrcode id\
+    qr_id = request.query["id"]
+    if qr_id == "":
+        abort(404, "requested qr code does not exist")
+
+
 
 @app.post('/qr')
 def do_qr():
@@ -62,6 +67,10 @@ def do_qr():
         'box_size': request.forms.get("box_size"),
         'border': request.forms.get("border")
     }
+
+    if data["data"] == "":
+        abort(400, "missing qr code data")
+        return
 
     qr = create_qr(data)
     print(qr)
